@@ -15,7 +15,6 @@ Global $busyLabel = GUICtrlCreateLabel(" ", 256, 112, 123, 28, BitOR($SS_CENTER,
 #EndRegion ### END Koda GUI section ###
 	
 	GUICtrlSetData($busyAVI, @ScriptDir&"\GUI\busy_indicator_32x32.avi")
-	GUICtrlSetState($busyLabel, $GUI_HIDE)
 	
 	_GUICtrlComboBox_ResetContent($recipientCombo)
 	$section = IniReadSection($logRecipientsPath, "DATA")
@@ -38,6 +37,11 @@ EndFunc
 
 Func _waitForMainGUI()
 	
+	Local $lengthMemory = 0
+	Local $length
+	
+	GUICtrlSetState($busyLabel, $GUI_SHOW)
+	
 	While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
@@ -53,6 +57,13 @@ Func _waitForMainGUI()
 			_showMessageLogGUI()
 		Case $messageEdit
 		EndSwitch
+		
+		$length = _GUICtrlEdit_GetTextLen($messageEdit)
+		If $length<>$lengthMemory Then
+			GUICtrlSetData($busyLabel, $length&" characters")
+			$lengthMemory = $length
+		EndIf
+		
 		Sleep(50)
 	WEnd
 	

@@ -96,9 +96,6 @@ Func _send($recipient, $message)
 	$URL &= "text="
 	$URL &= $message
 	
-	MsgBox(1,"",$URL)
-;~ 	Exit
-	
 	GUICtrlSetState($sendButton, $GUI_DISABLE)
 	
 	GUICtrlSetState($busyAVI, $GUI_SHOW)
@@ -106,7 +103,6 @@ Func _send($recipient, $message)
 	GUICtrlSetData($busyLabel, "sending ...")
 	_GUICtrlAVI_Play($busyAVI)
 	
-;~ 	Exit
 	$source = _INetGetSource($URL, True)
 	
 	If $source == "<html>"&@LF&"<body>"&@LF&"Mesage SENT!<br/>"&@LF&"</body>"&@LF&"</html>" Then
