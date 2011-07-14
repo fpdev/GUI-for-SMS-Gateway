@@ -120,10 +120,8 @@ Func _send($recipient, $message)
 	
 	GUICtrlSetState($sendButton, $GUI_DISABLE)
 	
-	GUICtrlSetState($busyAVI, $GUI_SHOW)
 	GUICtrlSetState($busyLabel, $GUI_SHOW)
 	GUICtrlSetData($busyLabel, "sending ...")
-	_GUICtrlAVI_Play($busyAVI)
 	
 	$source = _INetGetSource($URL, True)
 	
@@ -134,10 +132,8 @@ Func _send($recipient, $message)
 		MsgBox(0+16, @ScriptName, "Failure, message not sent: "&@LF&@LF&"Recipient: "&$recipient&@LF&"Message: "&$message&@LF&@LF&"URL: "&$URL)
 	EndIf
 	
-	GUICtrlSetState($busyAVI, $GUI_HIDE)
 	GUICtrlSetState($busyLabel, $GUI_HIDE)
 	GUICtrlSetData($busyLabel, " ")
-	_GUICtrlAVI_Stop($busyAVI)
 	
 	GUICtrlSetState($sendButton, $GUI_ENABLE)
 	
@@ -150,6 +146,8 @@ EndFunc
 Func _logRecipient($recipient)
 	
 	If $logRecipients == 1 Then
+		
+		$currentEntry = _GUICtrlComboBox_GetEditText($recipientCombo)
 		
 		$index = IniRead($logRecipientsPath, "META", "lastIndex", 0)
 		$index += 1
@@ -165,6 +163,8 @@ Func _logRecipient($recipient)
 				_GUICtrlComboBox_InsertString($recipientCombo, $section[$i][1])
 			Next
 		EndIf
+		
+		_GUICtrlComboBox_SetEditText($recipientCombo, $currentEntry)
 		
 	EndIf
 	

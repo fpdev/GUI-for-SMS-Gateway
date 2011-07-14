@@ -22,21 +22,17 @@
 
 Func _createMainGUI()
 	
-#Region ### START Koda GUI section ### Form=S:\sabox\grid\FP-SMSGatewayGUI\GUI\mainGUI.kxf
-Global $mainGUI = GUICreate("GUI for SMS Gateway", 477, 153, -1, -1)
-Global $recipientLabel = GUICtrlCreateLabel("Recipient", 8, 8, 61, 20)
-Global $messageLabel = GUICtrlCreateLabel("Message", 8, 40, 61, 20)
-Global $recipientCombo = GUICtrlCreateCombo("", 80, 8, 385, 25)
-Global $sendButton = GUICtrlCreateButton("Send", 390, 110, 75, 33, 0)
-Global $settingsButton = GUICtrlCreateButton("Settings", 8, 110, 75, 33, 0)
-Global $messageLogButton = GUICtrlCreateButton("Message Log", 88, 110, 115, 33, 0)
-Global $messageEdit = GUICtrlCreateEdit("", 80, 40, 385, 57, BitOR($ES_AUTOVSCROLL,$WS_VSCROLL,$ES_MULTILINE))
-Global $busyAVI = GUICtrlCreateAvi("No File", -1, 216, 110, 32, 32)
-GUICtrlSetState(-1, $GUI_HIDE)
-Global $busyLabel = GUICtrlCreateLabel(" ", 256, 112, 123, 28, BitOR($SS_CENTER,$SS_CENTERIMAGE))
-#EndRegion ### END Koda GUI section ###
-	
-	GUICtrlSetData($busyAVI, @ScriptDir&"\GUI\busy_indicator_32x32.avi")
+	#Region ### START Koda GUI section ### Form=S:\sabox\grid\GUI for SMS Gateway\GUI\mainGUI.kxf
+	Global $mainGUI = GUICreate("GUI for SMS Gateway", 477, 153, -1, -1)
+	Global $recipientLabel = GUICtrlCreateLabel("Recipient", 8, 8, 61, 20)
+	Global $messageLabel = GUICtrlCreateLabel("Message", 8, 40, 61, 20)
+	Global $recipientCombo = GUICtrlCreateCombo("", 80, 8, 385, 25)
+	Global $sendButton = GUICtrlCreateButton("Send", 390, 110, 75, 33, 0)
+	Global $settingsButton = GUICtrlCreateButton("Settings", 8, 110, 75, 33, 0)
+	Global $messageLogButton = GUICtrlCreateButton("Message Log", 88, 110, 115, 33, 0)
+	Global $messageEdit = GUICtrlCreateEdit("", 80, 40, 385, 57, BitOR($ES_AUTOVSCROLL,$ES_AUTOHSCROLL,$ES_WANTRETURN,$WS_VSCROLL))
+	Global $busyLabel = GUICtrlCreateLabel("", 216, 112, 164, 28, BitOR($SS_CENTER,$SS_CENTERIMAGE))
+	#EndRegion ### END Koda GUI section ###
 	
 	_GUICtrlComboBox_ResetContent($recipientCombo)
 	$section = IniReadSection($logRecipientsPath, "DATA")
