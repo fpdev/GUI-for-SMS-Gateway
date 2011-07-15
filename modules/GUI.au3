@@ -30,7 +30,7 @@ Func _createMainGUI()
 	Global $sendButton = GUICtrlCreateButton("Send", 390, 110, 75, 33, 0)
 	Global $settingsButton = GUICtrlCreateButton("Settings", 8, 110, 75, 33, 0)
 	Global $messageLogButton = GUICtrlCreateButton("Message Log", 88, 110, 115, 33, 0)
-	Global $messageEdit = GUICtrlCreateEdit("", 80, 40, 385, 57, BitOR($ES_AUTOVSCROLL,$ES_AUTOHSCROLL,$ES_WANTRETURN,$WS_VSCROLL))
+	Global $messageEdit = GUICtrlCreateEdit("", 80, 40, 385, 57, BitOR($ES_AUTOVSCROLL,$WS_VSCROLL,$ES_MULTILINE))
 	Global $busyLabel = GUICtrlCreateLabel("", 216, 112, 164, 28, BitOR($SS_CENTER,$SS_CENTERIMAGE))
 	#EndRegion ### END Koda GUI section ###
 	
